@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>createkey</title>
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <script>
+        async function submitForm(event) {
+            event.preventDefault();
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            var masterkey = document.getElementById("key").value;
+            console.log(password)
+            const data = {
+            username: username,
+            password: password,
+            masterkey: masterkey
+            };
+
+            console.log(username)
+            console.log(password)
+            console.log(masterkey)  
+            
+
+            var response = await fetch("/createkey", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            });
+            var text = await response.text();           
+            if (text.includes("Successful!")) {
+                console.log(text)
+                const outputElement = document.getElementById("userOutput");
+                outputElement.textContent = text
+                window.location.href = "/";
+            } else {
+                console.log(text)
+                const outputElement = document.getElementById("userOutput");
+                outputElement.textContent = text
+            }
+        }
+    </script>
+</head>
+<body>
+    <p>this is your encryption key to decrypt the file in your private data folder.</p>
+    <p>only you has the key the server does not store the key so make sure to not loose it</p>
+    <p>make sure the key is well secured (lots of capital char variation and special characters and numbers)</p>
+    
+    
+    <form onsubmit="submitForm(event)">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username"><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password"><br><br>
+        <br>
+        <label for="key">Secret Key:</label>
+        <input type="text" id="key" name="key">
+        <button type="submit">Create Key</button>
+    </form>
+    <div id="userOutput"></div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var storedUsername = localStorage.getItem("username");
+            if (storedUsername) {
+                var usernameInput = document.getElementById("username");
+                usernameInput.value = storedUsername;
+            }
+        });
+        document.addEventListener("DOMContentLoaded", function() {
+            var storedPassword = localStorage.getItem("password");
+            if (storedPassword) {
+                var passwordInput = document.getElementById("password");
+                passwordInput.value = storedPassword;
+            }
+        });
+    </script>
+</body>
+</html>
