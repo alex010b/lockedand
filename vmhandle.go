@@ -15,7 +15,7 @@ func Listener(events chan VPS, conn *websocket.Conn) {
 		case event := <-events:
 
 			SendWs(conn, "configuring ip and port")
-			fmt.Println("NIGGERS", event)
+			fmt.Println("test", event)
 			currentport, _ := os.ReadFile("currentport")
 			fmt.Println(string(currentport), event)
 			currentporti, _ := strconv.Atoi(string(currentport))
