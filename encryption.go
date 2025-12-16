@@ -22,7 +22,7 @@ func comparePasswordWithHash(password string, storedHash []byte) error {
 }
 
 func encrypt(key string, plaintext string) []byte {
-	salt := []byte("7*asdih*bs89db(743)")
+	salt := []byte("")
 	keyLen := 32 // AES-256
 	iterations := 4096
 
