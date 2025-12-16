@@ -2,8 +2,8 @@
 
 # MySQL connection parameters
 MYSQL_USER="root"
-MYSQL_PASSWORD="ImABall!@#@@(@11212"
-MYSQL_DATABASE="lockedand"
+MYSQL_PASSWORD=""
+MYSQL_DATABASE=""
 TABLE_TO_DROP="people"
 rm -rf database/*
 # Check if the MySQL command-line tool is installed
