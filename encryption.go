@@ -51,7 +51,7 @@ func encrypt(key string, plaintext string) []byte {
 func decrypt(key []byte, ciphertext []byte) (string, error) {
 
 	password := key
-	salt := []byte("7*asdih*bs89db(743)")
+	salt := []byte("")
 	keyLen := 32 // AES-256
 	iterations := 4096
 
